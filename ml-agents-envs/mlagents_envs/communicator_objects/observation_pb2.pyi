@@ -69,9 +69,30 @@ class ObservationProto(google___protobuf___message___Message):
         else:
             def ClearField(self, field_name: typing_extensions___Literal[u"data",b"data"]) -> None: ...
 
+    class CompressedData(google___protobuf___message___Message):
+        DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+        compressed = ... # type: builtin___bytes
+        mapping = ... # type: google___protobuf___internal___containers___RepeatedScalarFieldContainer[builtin___int]
+
+        def __init__(self,
+            *,
+            compressed : typing___Optional[builtin___bytes] = None,
+            mapping : typing___Optional[typing___Iterable[builtin___int]] = None,
+            ) -> None: ...
+        @classmethod
+        def FromString(cls, s: builtin___bytes) -> ObservationProto.CompressedData: ...
+        def MergeFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
+        def CopyFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
+        if sys.version_info >= (3,):
+            def ClearField(self, field_name: typing_extensions___Literal[u"compressed",u"mapping"]) -> None: ...
+        else:
+            def ClearField(self, field_name: typing_extensions___Literal[u"compressed",b"compressed",u"mapping",b"mapping"]) -> None: ...
+
     shape = ... # type: google___protobuf___internal___containers___RepeatedScalarFieldContainer[builtin___int]
     compression_type = ... # type: CompressionTypeProto
-    compressed_data = ... # type: builtin___bytes
+
+    @property
+    def compressed_data(self) -> ObservationProto.CompressedData: ...
 
     @property
     def float_data(self) -> ObservationProto.FloatData: ...
@@ -80,7 +101,7 @@ class ObservationProto(google___protobuf___message___Message):
         *,
         shape : typing___Optional[typing___Iterable[builtin___int]] = None,
         compression_type : typing___Optional[CompressionTypeProto] = None,
-        compressed_data : typing___Optional[builtin___bytes] = None,
+        compressed_data : typing___Optional[ObservationProto.CompressedData] = None,
         float_data : typing___Optional[ObservationProto.FloatData] = None,
         ) -> None: ...
     @classmethod

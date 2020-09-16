@@ -13,6 +13,8 @@ namespace Unity.MLAgents.Sensors
         int[] m_Shape;
         SensorCompressionType m_CompressionType;
 
+        int[] m_CompressedMapping;
+
         /// <summary>
         /// The compression type used by the sensor.
         /// </summary>
@@ -42,6 +44,18 @@ namespace Unity.MLAgents.Sensors
             m_Name = name;
             m_Shape = new[] { height, width, grayscale ? 1 : 3 };
             m_CompressionType = compressionType;
+
+            if (m_CompressionType != SensorCompressionType.None)
+            {
+                if (m_Grayscale)
+                {
+                    m_CompressedMapping = new int[] { 1, 1, 1 };
+                }
+                else
+                {
+                    m_CompressedMapping = new int[] { 1, 2, 3 };
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -91,6 +105,11 @@ namespace Unity.MLAgents.Sensors
         public SensorCompressionType GetCompressionType()
         {
             return m_CompressionType;
+        }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return m_CompressedMapping;
         }
 
         /// <summary>

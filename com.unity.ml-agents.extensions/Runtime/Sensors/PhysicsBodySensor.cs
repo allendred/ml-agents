@@ -118,5 +118,10 @@ namespace Unity.MLAgents.Extensions.Sensors
         {
             return m_SensorName;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 }

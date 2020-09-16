@@ -231,9 +231,15 @@ namespace Unity.MLAgents
                     Debug.LogWarning("Observation has both compressed and uncompressed data set. Using compressed.");
                 }
 
+                var compressedDataProto = new ObservationProto.Types.CompressedData
+                {
+                    Compressed = ByteString.CopyFrom(obs.CompressedData),
+                    Mapping = { obs.CompressedMapping },
+                };
+
                 obsProto = new ObservationProto
                 {
-                    CompressedData = ByteString.CopyFrom(obs.CompressedData),
+                    CompressedData = compressedDataProto,
                     CompressionType = (CompressionTypeProto)obs.CompressionType,
                 };
             }
@@ -298,10 +304,16 @@ namespace Unity.MLAgents
                         "return SensorCompressionType.None from GetCompressionType()."
                         );
                 }
+                var compressedDataProto = new ObservationProto.Types.CompressedData
+                {
+                    Compressed = ByteString.CopyFrom(compressedObs),
+                };
+                compressedDataProto.Mapping.AddRange(sensor.GetCompressedObservationMapping());
+
 
                 observationProto = new ObservationProto
                 {
-                    CompressedData = ByteString.CopyFrom(compressedObs),
+                    CompressedData = compressedDataProto,
                     CompressionType = (CompressionTypeProto)sensor.GetCompressionType(),
                 };
             }

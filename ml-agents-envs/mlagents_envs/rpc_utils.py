@@ -78,7 +78,9 @@ class OffsetBytesIO:
 
 
 @timed
-def process_pixels(image_bytes: bytes, expected_channels: int) -> np.ndarray:
+def process_pixels(
+    proto_bytes: ObservationProto.CompressedData, expected_channels: int
+) -> np.ndarray:
     """
     Converts byte array observation image into numpy array, re-sizes it,
     and optionally converts it to grey scale
@@ -86,21 +88,11 @@ def process_pixels(image_bytes: bytes, expected_channels: int) -> np.ndarray:
     :param expected_channels: Expected output channels
     :return: processed numpy array of observation from environment
     """
+    image_bytes = proto_bytes.compressed
+    mappings = proto_bytes.mapping
     image_fp = OffsetBytesIO(image_bytes)
 
-    if expected_channels == 1:
-        # Convert to grayscale
-        with hierarchical_timer("image_decompress"):
-            image = Image.open(image_fp)
-            # Normally Image loads lazily, load() forces it to do loading in the timer scope.
-            image.load()
-        s = np.array(image, dtype=np.float32) / 255.0
-        s = np.mean(s, axis=2)
-        s = np.reshape(s, [s.shape[0], s.shape[1], 1])
-        return s
-
     image_arrays = []
-
     # Read the images back from the bytes (without knowing the sizes).
     while True:
         with hierarchical_timer("image_decompress"):
@@ -116,13 +108,17 @@ def process_pixels(image_bytes: bytes, expected_channels: int) -> np.ndarray:
             # Didn't find the header, so must be at the end.
             break
 
-    img = np.concatenate(image_arrays, axis=2)
-    # We can drop additional channels since they may need to be added to include
-    # numbers of observation channels not divisible by 3.
-    actual_channels = list(img.shape)[2]
-    if actual_channels > expected_channels:
-        img = img[..., 0:expected_channels]
+    image_arrays = np.concatenate(image_arrays, axis=2).transpose((2, 0, 1))
 
+    processed_image_arrays: List[np.array] = [[] for _ in range(expected_channels)]
+    for mapping_idx, img in zip(mappings, image_arrays):
+        if mapping_idx > 0:
+            processed_image_arrays[mapping_idx - 1].append(img)
+
+    for i, img_array in enumerate(processed_image_arrays):
+        processed_image_arrays[i] = np.mean(img_array, axis=0)
+
+    img = np.stack(processed_image_arrays, axis=2)
     return img
 
 

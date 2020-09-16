@@ -70,6 +70,11 @@ namespace Unity.MLAgents.Tests
         {
             return m_Name;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 
     [TestFixture]

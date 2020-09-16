@@ -53,6 +53,11 @@ namespace Unity.MLAgents.Tests
         {
             return SensorCompressionType.None;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 
     public class SensorShapeValidatorTests

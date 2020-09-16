@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='mlagents_envs/communicator_objects/observation.proto',
   package='communicator_objects',
   syntax='proto3',
-  serialized_pb=_b('\n4mlagents_envs/communicator_objects/observation.proto\x12\x14\x63ommunicator_objects\"\xf9\x01\n\x10ObservationProto\x12\r\n\x05shape\x18\x01 \x03(\x05\x12\x44\n\x10\x63ompression_type\x18\x02 \x01(\x0e\x32*.communicator_objects.CompressionTypeProto\x12\x19\n\x0f\x63ompressed_data\x18\x03 \x01(\x0cH\x00\x12\x46\n\nfloat_data\x18\x04 \x01(\x0b\x32\x30.communicator_objects.ObservationProto.FloatDataH\x00\x1a\x19\n\tFloatData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x02\x42\x12\n\x10observation_data*)\n\x14\x43ompressionTypeProto\x12\x08\n\x04NONE\x10\x00\x12\x07\n\x03PNG\x10\x01\x42%\xaa\x02\"Unity.MLAgents.CommunicatorObjectsb\x06proto3')
+  serialized_pb=_b('\n4mlagents_envs/communicator_objects/observation.proto\x12\x14\x63ommunicator_objects\"\xe7\x02\n\x10ObservationProto\x12\r\n\x05shape\x18\x01 \x03(\x05\x12\x44\n\x10\x63ompression_type\x18\x02 \x01(\x0e\x32*.communicator_objects.CompressionTypeProto\x12P\n\x0f\x63ompressed_data\x18\x03 \x01(\x0b\x32\x35.communicator_objects.ObservationProto.CompressedDataH\x00\x12\x46\n\nfloat_data\x18\x04 \x01(\x0b\x32\x30.communicator_objects.ObservationProto.FloatDataH\x00\x1a\x19\n\tFloatData\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x02\x1a\x35\n\x0e\x43ompressedData\x12\x12\n\ncompressed\x18\x01 \x01(\x0c\x12\x0f\n\x07mapping\x18\x02 \x03(\x05\x42\x12\n\x10observation_data*)\n\x14\x43ompressionTypeProto\x12\x08\n\x04NONE\x10\x00\x12\x07\n\x03PNG\x10\x01\x42%\xaa\x02\"Unity.MLAgents.CommunicatorObjectsb\x06proto3')
 )
 
 _COMPRESSIONTYPEPROTO = _descriptor.EnumDescriptor(
@@ -40,8 +40,8 @@ _COMPRESSIONTYPEPROTO = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=330,
-  serialized_end=371,
+  serialized_start=440,
+  serialized_end=481,
 )
 _sym_db.RegisterEnumDescriptor(_COMPRESSIONTYPEPROTO)
 
@@ -77,8 +77,45 @@ _OBSERVATIONPROTO_FLOATDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=283,
-  serialized_end=308,
+  serialized_start=338,
+  serialized_end=363,
+)
+
+_OBSERVATIONPROTO_COMPRESSEDDATA = _descriptor.Descriptor(
+  name='CompressedData',
+  full_name='communicator_objects.ObservationProto.CompressedData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='compressed', full_name='communicator_objects.ObservationProto.CompressedData.compressed', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='mapping', full_name='communicator_objects.ObservationProto.CompressedData.mapping', index=1,
+      number=2, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=365,
+  serialized_end=418,
 )
 
 _OBSERVATIONPROTO = _descriptor.Descriptor(
@@ -104,8 +141,8 @@ _OBSERVATIONPROTO = _descriptor.Descriptor(
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='compressed_data', full_name='communicator_objects.ObservationProto.compressed_data', index=2,
-      number=3, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b(""),
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
@@ -119,7 +156,7 @@ _OBSERVATIONPROTO = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_OBSERVATIONPROTO_FLOATDATA, ],
+  nested_types=[_OBSERVATIONPROTO_FLOATDATA, _OBSERVATIONPROTO_COMPRESSEDDATA, ],
   enum_types=[
   ],
   options=None,
@@ -132,11 +169,13 @@ _OBSERVATIONPROTO = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=79,
-  serialized_end=328,
+  serialized_end=438,
 )
 
 _OBSERVATIONPROTO_FLOATDATA.containing_type = _OBSERVATIONPROTO
+_OBSERVATIONPROTO_COMPRESSEDDATA.containing_type = _OBSERVATIONPROTO
 _OBSERVATIONPROTO.fields_by_name['compression_type'].enum_type = _COMPRESSIONTYPEPROTO
+_OBSERVATIONPROTO.fields_by_name['compressed_data'].message_type = _OBSERVATIONPROTO_COMPRESSEDDATA
 _OBSERVATIONPROTO.fields_by_name['float_data'].message_type = _OBSERVATIONPROTO_FLOATDATA
 _OBSERVATIONPROTO.oneofs_by_name['observation_data'].fields.append(
   _OBSERVATIONPROTO.fields_by_name['compressed_data'])
@@ -156,12 +195,20 @@ ObservationProto = _reflection.GeneratedProtocolMessageType('ObservationProto', 
     # @@protoc_insertion_point(class_scope:communicator_objects.ObservationProto.FloatData)
     ))
   ,
+
+  CompressedData = _reflection.GeneratedProtocolMessageType('CompressedData', (_message.Message,), dict(
+    DESCRIPTOR = _OBSERVATIONPROTO_COMPRESSEDDATA,
+    __module__ = 'mlagents_envs.communicator_objects.observation_pb2'
+    # @@protoc_insertion_point(class_scope:communicator_objects.ObservationProto.CompressedData)
+    ))
+  ,
   DESCRIPTOR = _OBSERVATIONPROTO,
   __module__ = 'mlagents_envs.communicator_objects.observation_pb2'
   # @@protoc_insertion_point(class_scope:communicator_objects.ObservationProto)
   ))
 _sym_db.RegisterMessage(ObservationProto)
 _sym_db.RegisterMessage(ObservationProto.FloatData)
+_sym_db.RegisterMessage(ObservationProto.CompressedData)
 
 
 DESCRIPTOR.has_options = True

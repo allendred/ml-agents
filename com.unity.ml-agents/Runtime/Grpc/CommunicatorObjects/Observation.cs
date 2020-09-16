@@ -25,19 +25,22 @@ namespace Unity.MLAgents.CommunicatorObjects {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CjRtbGFnZW50c19lbnZzL2NvbW11bmljYXRvcl9vYmplY3RzL29ic2VydmF0",
-            "aW9uLnByb3RvEhRjb21tdW5pY2F0b3Jfb2JqZWN0cyL5AQoQT2JzZXJ2YXRp",
+            "aW9uLnByb3RvEhRjb21tdW5pY2F0b3Jfb2JqZWN0cyLnAgoQT2JzZXJ2YXRp",
             "b25Qcm90bxINCgVzaGFwZRgBIAMoBRJEChBjb21wcmVzc2lvbl90eXBlGAIg",
             "ASgOMiouY29tbXVuaWNhdG9yX29iamVjdHMuQ29tcHJlc3Npb25UeXBlUHJv",
-            "dG8SGQoPY29tcHJlc3NlZF9kYXRhGAMgASgMSAASRgoKZmxvYXRfZGF0YRgE",
-            "IAEoCzIwLmNvbW11bmljYXRvcl9vYmplY3RzLk9ic2VydmF0aW9uUHJvdG8u",
-            "RmxvYXREYXRhSAAaGQoJRmxvYXREYXRhEgwKBGRhdGEYASADKAJCEgoQb2Jz",
-            "ZXJ2YXRpb25fZGF0YSopChRDb21wcmVzc2lvblR5cGVQcm90bxIICgROT05F",
-            "EAASBwoDUE5HEAFCJaoCIlVuaXR5Lk1MQWdlbnRzLkNvbW11bmljYXRvck9i",
-            "amVjdHNiBnByb3RvMw=="));
+            "dG8SUAoPY29tcHJlc3NlZF9kYXRhGAMgASgLMjUuY29tbXVuaWNhdG9yX29i",
+            "amVjdHMuT2JzZXJ2YXRpb25Qcm90by5Db21wcmVzc2VkRGF0YUgAEkYKCmZs",
+            "b2F0X2RhdGEYBCABKAsyMC5jb21tdW5pY2F0b3Jfb2JqZWN0cy5PYnNlcnZh",
+            "dGlvblByb3RvLkZsb2F0RGF0YUgAGhkKCUZsb2F0RGF0YRIMCgRkYXRhGAEg",
+            "AygCGjUKDkNvbXByZXNzZWREYXRhEhIKCmNvbXByZXNzZWQYASABKAwSDwoH",
+            "bWFwcGluZxgCIAMoBUISChBvYnNlcnZhdGlvbl9kYXRhKikKFENvbXByZXNz",
+            "aW9uVHlwZVByb3RvEggKBE5PTkUQABIHCgNQTkcQAUIlqgIiVW5pdHkuTUxB",
+            "Z2VudHMuQ29tbXVuaWNhdG9yT2JqZWN0c2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Unity.MLAgents.CommunicatorObjects.CompressionTypeProto), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Unity.MLAgents.CommunicatorObjects.ObservationProto), global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Parser, new[]{ "Shape", "CompressionType", "CompressedData", "FloatData" }, new[]{ "ObservationData" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.FloatData), global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.FloatData.Parser, new[]{ "Data" }, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::Unity.MLAgents.CommunicatorObjects.ObservationProto), global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Parser, new[]{ "Shape", "CompressionType", "CompressedData", "FloatData" }, new[]{ "ObservationData" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.FloatData), global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.FloatData.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData), global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData.Parser, new[]{ "Compressed", "Mapping" }, null, null, null)})
           }));
     }
     #endregion
@@ -81,7 +84,7 @@ namespace Unity.MLAgents.CommunicatorObjects {
       compressionType_ = other.compressionType_;
       switch (other.ObservationDataCase) {
         case ObservationDataOneofCase.CompressedData:
-          CompressedData = other.CompressedData;
+          CompressedData = other.CompressedData.Clone();
           break;
         case ObservationDataOneofCase.FloatData:
           FloatData = other.FloatData.Clone();
@@ -120,11 +123,11 @@ namespace Unity.MLAgents.CommunicatorObjects {
     /// <summary>Field number for the "compressed_data" field.</summary>
     public const int CompressedDataFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString CompressedData {
-      get { return observationDataCase_ == ObservationDataOneofCase.CompressedData ? (pb::ByteString) observationData_ : pb::ByteString.Empty; }
+    public global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData CompressedData {
+      get { return observationDataCase_ == ObservationDataOneofCase.CompressedData ? (global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData) observationData_ : null; }
       set {
-        observationData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-        observationDataCase_ = ObservationDataOneofCase.CompressedData;
+        observationData_ = value;
+        observationDataCase_ = value == null ? ObservationDataOneofCase.None : ObservationDataOneofCase.CompressedData;
       }
     }
 
@@ -173,7 +176,7 @@ namespace Unity.MLAgents.CommunicatorObjects {
       }
       if(!shape_.Equals(other.shape_)) return false;
       if (CompressionType != other.CompressionType) return false;
-      if (CompressedData != other.CompressedData) return false;
+      if (!object.Equals(CompressedData, other.CompressedData)) return false;
       if (!object.Equals(FloatData, other.FloatData)) return false;
       if (ObservationDataCase != other.ObservationDataCase) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -207,7 +210,7 @@ namespace Unity.MLAgents.CommunicatorObjects {
       }
       if (observationDataCase_ == ObservationDataOneofCase.CompressedData) {
         output.WriteRawTag(26);
-        output.WriteBytes(CompressedData);
+        output.WriteMessage(CompressedData);
       }
       if (observationDataCase_ == ObservationDataOneofCase.FloatData) {
         output.WriteRawTag(34);
@@ -226,7 +229,7 @@ namespace Unity.MLAgents.CommunicatorObjects {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CompressionType);
       }
       if (observationDataCase_ == ObservationDataOneofCase.CompressedData) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(CompressedData);
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CompressedData);
       }
       if (observationDataCase_ == ObservationDataOneofCase.FloatData) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(FloatData);
@@ -248,7 +251,10 @@ namespace Unity.MLAgents.CommunicatorObjects {
       }
       switch (other.ObservationDataCase) {
         case ObservationDataOneofCase.CompressedData:
-          CompressedData = other.CompressedData;
+          if (CompressedData == null) {
+            CompressedData = new global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData();
+          }
+          CompressedData.MergeFrom(other.CompressedData);
           break;
         case ObservationDataOneofCase.FloatData:
           if (FloatData == null) {
@@ -279,7 +285,12 @@ namespace Unity.MLAgents.CommunicatorObjects {
             break;
           }
           case 26: {
-            CompressedData = input.ReadBytes();
+            global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData subBuilder = new global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Types.CompressedData();
+            if (observationDataCase_ == ObservationDataOneofCase.CompressedData) {
+              subBuilder.MergeFrom(CompressedData);
+            }
+            input.ReadMessage(subBuilder);
+            CompressedData = subBuilder;
             break;
           }
           case 34: {
@@ -413,6 +424,156 @@ namespace Unity.MLAgents.CommunicatorObjects {
               case 10:
               case 13: {
                 data_.AddEntriesFrom(input, _repeated_data_codec);
+                break;
+              }
+            }
+          }
+        }
+
+      }
+
+      internal sealed partial class CompressedData : pb::IMessage<CompressedData> {
+        private static readonly pb::MessageParser<CompressedData> _parser = new pb::MessageParser<CompressedData>(() => new CompressedData());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<CompressedData> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Unity.MLAgents.CommunicatorObjects.ObservationProto.Descriptor.NestedTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public CompressedData() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public CompressedData(CompressedData other) : this() {
+          compressed_ = other.compressed_;
+          mapping_ = other.mapping_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public CompressedData Clone() {
+          return new CompressedData(this);
+        }
+
+        /// <summary>Field number for the "compressed" field.</summary>
+        public const int CompressedFieldNumber = 1;
+        private pb::ByteString compressed_ = pb::ByteString.Empty;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pb::ByteString Compressed {
+          get { return compressed_; }
+          set {
+            compressed_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "mapping" field.</summary>
+        public const int MappingFieldNumber = 2;
+        private static readonly pb::FieldCodec<int> _repeated_mapping_codec
+            = pb::FieldCodec.ForInt32(18);
+        private readonly pbc::RepeatedField<int> mapping_ = new pbc::RepeatedField<int>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<int> Mapping {
+          get { return mapping_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other) {
+          return Equals(other as CompressedData);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(CompressedData other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Compressed != other.Compressed) return false;
+          if(!mapping_.Equals(other.mapping_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Compressed.Length != 0) hash ^= Compressed.GetHashCode();
+          hash ^= mapping_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output) {
+          if (Compressed.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteBytes(Compressed);
+          }
+          mapping_.WriteTo(output, _repeated_mapping_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize() {
+          int size = 0;
+          if (Compressed.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeBytesSize(Compressed);
+          }
+          size += mapping_.CalculateSize(_repeated_mapping_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(CompressedData other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Compressed.Length != 0) {
+            Compressed = other.Compressed;
+          }
+          mapping_.Add(other.mapping_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                Compressed = input.ReadBytes();
+                break;
+              }
+              case 18:
+              case 16: {
+                mapping_.AddEntriesFrom(input, _repeated_mapping_codec);
                 break;
               }
             }

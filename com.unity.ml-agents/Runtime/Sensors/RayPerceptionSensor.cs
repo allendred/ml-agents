@@ -502,5 +502,10 @@ namespace Unity.MLAgents.Sensors
 
             return rayOutput;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 }

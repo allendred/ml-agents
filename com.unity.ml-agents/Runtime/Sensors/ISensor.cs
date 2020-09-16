@@ -64,6 +64,8 @@ namespace Unity.MLAgents.Sensors
         /// <returns>Compression type used by the sensor.</returns>
         SensorCompressionType GetCompressionType();
 
+        int[] GetCompressedObservationMapping();
+
         /// <summary>
         /// Get the name of the sensor. This is used to ensure deterministic sorting of the sensors
         /// on an Agent, so the naming must be consistent across all sensors and agents.

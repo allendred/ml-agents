@@ -99,5 +99,10 @@ namespace Unity.MLAgents.Sensors.Reflection
         {
             return m_SensorName;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 }

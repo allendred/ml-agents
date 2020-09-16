@@ -158,6 +158,11 @@ namespace Unity.MLAgents.Tests
         {
             numResetCalls++;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 
     [TestFixture]

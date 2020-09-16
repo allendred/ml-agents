@@ -55,5 +55,10 @@ namespace Unity.MLAgentsExamples
         {
             return SensorCompressionType.None;
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 }

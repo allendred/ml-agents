@@ -205,5 +205,10 @@ namespace Unity.MLAgents.Sensors
                 AddFloatObs(i == observation ? 1.0f : 0.0f);
             }
         }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return null;
+        }
     }
 }

@@ -13,10 +13,15 @@ message ObservationProto {
         repeated float data = 1;
     }
 
+    message CompressedData {
+        bytes compressed = 1;
+        repeated int32 mapping = 2;
+    }
+
     repeated int32 shape = 1;
     CompressionTypeProto compression_type = 2;
     oneof observation_data {
-        bytes compressed_data = 3;
+        CompressedData compressed_data = 3;
         FloatData float_data = 4;
     }
 }

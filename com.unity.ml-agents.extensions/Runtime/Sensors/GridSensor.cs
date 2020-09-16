@@ -203,6 +203,8 @@ namespace Unity.MLAgents.Extensions.Sensors
         /// </summary>
         private int[] m_Shape;
 
+        int[] m_CompressedMapping;
+
         //
         // Debug Parameters
         //
@@ -282,6 +284,19 @@ namespace Unity.MLAgents.Extensions.Sensors
             this.DiffNumSideZX = (GridNumSideZ - GridNumSideX);
             this.OffsetGridNumSide = (GridNumSideZ - 1f) / 2f;
             this.DebugColors = debugColors;
+
+            if (GetCompressionType() != SensorCompressionType.None)
+            {
+                var totalCannel = 0;
+                Array.ForEach(channelDepth, delegate (int i) { totalCannel += i; });
+                var compressChannel = 3;
+                var paddedChannel = (totalCannel + compressChannel - 1) / compressChannel;  // division rounding up
+                m_CompressedMapping = new int[paddedChannel];
+                for (var i = 0; i < totalCannel; i++)
+                {
+                    m_CompressedMapping[i] = 1;
+                }
+            }
         }
 
         /// <summary>
@@ -470,6 +485,11 @@ namespace Unity.MLAgents.Extensions.Sensors
         public virtual SensorCompressionType GetCompressionType()
         {
             return SensorCompressionType.PNG;
+        }
+
+        public int[] GetCompressedObservationMapping()
+        {
+            return m_CompressedMapping;
         }
 
         /// <summary>
